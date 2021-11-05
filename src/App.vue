@@ -1,15 +1,46 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <button @click="addNote">Add Note</button>
+  <NotesList v-bind:notesProps="notes"/>
+  <p>{{msg}}</p>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import NotesList from './components/Notes/NotesList';
 
+function addNote() {
+  let oldMsg = this.msg;
+  let newMsg= "Hello from button";
+  this.msg = newMsg;
+}
+
+// component's attributes
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    NotesList
+  },
+  data() {
+    return {
+      msg: "",
+      notes: [],
+    }
+  },
+  methods: {
+    addNote: addNote
+  },
+  created() {
+    this.notes = [
+      {
+        id: 1,
+        text: "Primera tarea",
+        completed: false,
+      },
+      {
+        id: 2,
+        text: "Segunda tarea",
+        completed: true,
+      },
+    ]
   }
 }
 </script>
@@ -21,6 +52,6 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin-top: 20px;
 }
 </style>
