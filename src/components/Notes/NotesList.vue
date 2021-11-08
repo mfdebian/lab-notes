@@ -18,7 +18,7 @@ function toggleShowAddNoteComponent() {
 }
 
 function addNote(note) {
-  this.notes = [...this.notes, note];
+  this.notes = [note, ...this.notes];
 }
 
 function deleteNote(noteId) {
