@@ -1,4 +1,5 @@
 <template>
+  <h1>Notes App</h1>
   <NotesList />
 </template>
 

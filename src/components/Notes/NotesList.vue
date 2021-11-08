@@ -1,7 +1,6 @@
 <template>
-  <h1>Notes</h1>
-  <button @click="addNote">Add Note</button>
-  <p>{{msg}}</p>
+  <button @click="toggleShowAddNoteComponent">&#10133;</button>
+  <AddNote v-show="showAddNoteComponent" @add-note="addNote" />
   <Note
     @delete-note="deleteNote"
     v-for="note in notes" 
@@ -12,11 +11,14 @@
 
 <script>
 import Note from './Note'
+import AddNote from './AddNote';
 
-function addNote() {
-  let oldMsg = this.msg;
-  let newMsg= "Hello from button";
-  this.msg = newMsg;
+function toggleShowAddNoteComponent() {
+  this.showAddNoteComponent = !this.showAddNoteComponent;
+}
+
+function addNote(note) {
+  this.notes = [...this.notes, note];
 }
 
 function deleteNote(noteId) {
@@ -28,17 +30,19 @@ function deleteNote(noteId) {
 export default {
   name: 'NotesList',
   components: {
-    Note
+    Note,
+    AddNote
   },
   data() {
     return {
-      msg: "",
       notes: [],
+      showAddNoteComponent: false
     }
   },
   methods: {
     addNote: addNote,
-    deleteNote: deleteNote
+    deleteNote: deleteNote,
+    toggleShowAddNoteComponent: toggleShowAddNoteComponent
   },
   created() {
     this.notes = [
@@ -50,12 +54,12 @@ export default {
       {
         id: 2,
         text: "Segunda tarea",
-        completed: true,
+        completed: false,
       },
       {
         id: 3,
         text: "Tercera tarea",
-        completed: false,
+        completed: true,
       },
     ]
   }
@@ -64,5 +68,10 @@ export default {
 </script>
 
 <style>
+
+button {
+  font-size: 30px;
+  margin: 5px;
+}
 
 </style>
