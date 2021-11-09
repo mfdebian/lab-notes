@@ -1,9 +1,10 @@
 <template>
   <form @submit="emitAddNote">
-    <input type="text"
-    placeholder="Tarea a realizar"
-    v-model="text"
-    class="input-text" />
+    <input
+      type="text"
+      placeholder="Tarea a realizar"
+      v-model="text"
+      class="input-text" />
     <button type="submit" class="button-submit">&#10004;</button>
   </form>
 </template>
@@ -43,16 +44,16 @@ function emitAddNote(event) {
 }
 
 export default {
-name: 'AddNote',
-data() {
-  return {
-    text: '',
-    completed: false
+  name: 'AddNote',
+  data() {
+    return {
+      text: '',
+      completed: false
+    }
+  },
+  methods: {
+    emitAddNote: emitAddNote
   }
-},
-methods: {
-  emitAddNote: emitAddNote
-}
 }
 </script>
 

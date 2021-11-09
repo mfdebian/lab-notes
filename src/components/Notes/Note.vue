@@ -2,12 +2,17 @@
   <div class="note">
     <h2>
       <input 
-      type="checkbox"
-      v-bind:checked="note.completed"
-      @change="toggleNoteCompleted(note)"
-      class="input-checkbox"/>
-      <span v-bind:class="textClass">{{note.text}}</span>
-      <button>&#128221;</button>
+        type="checkbox"
+        v-bind:checked="note.completed"
+        @change="toggleNoteCompleted(note)"
+        class="input-checkbox"/>
+      <span v-bind:class="textClass" ref="noteText">{{note.text}}</span>
+      <EditNoteModal
+        v-show="showEditNoteModalComponent"
+        v-bind:note="note"
+        @edit-note-text="editNoteText"
+      />
+      <button @click="openEditNoteTextModal">&#128221;</button>
       <button @click="emitDeleteNoteEvent(note.id)">&#128465;</button>
     </h2>
   </div>
@@ -16,6 +21,7 @@
 </template>
 
 <script>
+import EditNoteModal from './EditNoteModal'
 
 function toggleNoteCompleted(note) {
   note.completed = !note.completed
@@ -26,6 +32,15 @@ function toggleNoteCompleted(note) {
   }
 }
 
+function openEditNoteTextModal() {
+  this.showEditNoteModalComponent = true;
+}
+
+function editNoteText(editedText) {
+  this.note.text = editedText;
+  this.showEditNoteModalComponent = false;
+}
+
 function emitDeleteNoteEvent(noteId) {
   /* We need to 'emit' this event to our parent component
   where the data lives */
@@ -34,12 +49,16 @@ function emitDeleteNoteEvent(noteId) {
 
 export default {
   name: 'Note',
+  components: {
+    EditNoteModal
+  },
   props: {
     note: Object,
   },
   data() {
     return {
-      textClass: ''
+      textClass: '',
+      showEditNoteModalComponent: false
     }
   },
   created() {
@@ -48,8 +67,10 @@ export default {
     }
   },
   methods: {
+    toggleNoteCompleted: toggleNoteCompleted,
+    editNoteText: editNoteText,
+    openEditNoteTextModal: openEditNoteTextModal,
     emitDeleteNoteEvent: emitDeleteNoteEvent,
-    toggleNoteCompleted: toggleNoteCompleted
   }
 }
 </script>
