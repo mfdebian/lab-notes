@@ -1,6 +1,11 @@
 <template>
-  <button @click="toggleShowAddNoteComponent">&#10133;</button>
-  <AddNote v-show="showAddNoteComponent" @add-note="addNote" />
+  <button 
+    @click="toggleShowAddNoteComponent"
+    role="show-add-note"
+  >
+    &#10133;
+  </button>
+  <AddNote v-if="showAddNoteComponent" @add-note="addNote" />
   <Note
     @delete-note="deleteNote"
     v-for="note in notes" 

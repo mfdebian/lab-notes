@@ -3,11 +3,17 @@
     <form @submit="emitEditNoteText">
       <input
         type="text"
-        placeholder="text"
+        placeholder="Tarea a realizar"
         v-model="text"
         class="input-text"
       />
-      <button type="submit" class="button-submit">&#10004;</button>
+      <button
+        type="submit" 
+        class="button-submit"
+        v-bind:disabled="!text.length"
+        >
+          &#10004;
+      </button>
     </form>
   </div>
 </template>

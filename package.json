@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build"
+    "build": "vue-cli-service build",
+    "test": "jest"
   },
   "dependencies": {
     "core-js": "^3.6.5",
@@ -13,8 +14,12 @@
     "vue": "^3.0.0"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^5.15.0",
+    "@testing-library/vue": "^6.4.2",
     "@vue/cli-plugin-babel": "~4.5.0",
     "@vue/cli-service": "~4.5.0",
-    "@vue/compiler-sfc": "^3.0.0"
+    "@vue/compiler-sfc": "^3.0.0",
+    "babel-jest": "^27.3.1",
+    "vue3-jest": "^27.0.0-alpha.1"
   }
 }

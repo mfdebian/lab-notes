@@ -4,7 +4,7 @@
 </template>
 
 <script>
-import NotesList from './components/Notes/NotesList';
+import NotesList from './components/notes/NotesList';
 
 // component's attributes
 export default {

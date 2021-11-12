@@ -1,11 +1,19 @@
 <template>
-  <form @submit="emitAddNote">
+  <form @submit="emitAddNote" role="add-note-form">
     <input
       type="text"
       placeholder="Tarea a realizar"
       v-model="text"
-      class="input-text" />
-    <button type="submit" class="button-submit">&#10004;</button>
+      class="input-text" 
+      role="add-note-text-input"
+      />
+    <button 
+      type="submit" 
+      class="button-submit"
+      role="add-note-submit-button"
+      v-bind:disabled="!text.length">
+        &#10004;
+    </button>
   </form>
 </template>
 
